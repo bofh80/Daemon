@@ -1132,6 +1132,7 @@ static void IN_ProcessEvents( bool dropInput )
 			case SDL_WINDOWEVENT:
 				switch( e.window.event )
 				{
+					case SDL_WINDOWEVENT_SIZE_CHANGED:
 					case SDL_WINDOWEVENT_RESIZED:
 						{
 							char width[32], height[32];
@@ -1146,7 +1147,11 @@ static void IN_ProcessEvents( bool dropInput )
 					case SDL_WINDOWEVENT_MINIMIZED:    Cvar_SetValue( "com_minimized", 1 ); break;
 					case SDL_WINDOWEVENT_RESTORED:
 					case SDL_WINDOWEVENT_MAXIMIZED:    Cvar_SetValue( "com_minimized", 0 ); break;
+					case SDL_WINDOWEVENT_HIDDEN:
+					case SDL_WINDOWEVENT_LEAVE:
 					case SDL_WINDOWEVENT_FOCUS_LOST:   Cvar_SetValue( "com_unfocused", 1 ); break;
+					case SDL_WINDOWEVENT_SHOWN:
+					case SDL_WINDOWEVENT_ENTER:
 					case SDL_WINDOWEVENT_FOCUS_GAINED: Cvar_SetValue( "com_unfocused", 0 ); break;
 				}
 				break;
